@@ -1,0 +1,40 @@
+---
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+
+type Props = {
+  title?: string | undefined;
+  description?: string;
+  keywords?: string[] | undefined;
+};
+
+const {
+  title = "Rohid",
+  description = "I'm Rohid",
+  keywords = [],
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(",")} />
+  </head>
+  <body class="bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  .dark {
+    color-scheme: dark;
+  }
+</style>

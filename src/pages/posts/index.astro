@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import RootLayout from "@/layouts/RootLayout.astro";
+import { compareDesc } from "date-fns";
+import PostRow from "@/components/PostRow.astro";
+
+const allPosts = await getCollection("posts");
+const sortedPosts = allPosts.sort((a, b) =>
+  compareDesc(a.data.publishDate, b.data.publishDate)
+);
+---
+
+<RootLayout title="Posts">
+  <main class="container lg:max-w-screen-md mx-auto px-4 my-16">
+    <section id="all-posts">
+      <div class="mb-4 flex items-center">
+        <h2
+          class="text-2xl font-medium text-zinc-600 dark:text-zinc-400 flex-1"
+        >
+          All Posts
+        </h2>
+      </div>
+      <div>
+        {
+          sortedPosts.map((post) => (
+            <PostRow
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.publishDate}
+              slug={post.slug}
+              thumbnail={post.data.coverImage}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</RootLayout>

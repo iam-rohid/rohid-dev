@@ -1,0 +1,87 @@
+---
+import RootLayout from "@/layouts/RootLayout.astro";
+import type { InferGetStaticPropsType } from "astro";
+import Image from "astro/components/Image.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection("projects");
+
+  return allProjects.map((project) => {
+    return {
+      params: { slug: project.slug },
+      props: project,
+    };
+  });
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const {
+  data: { name, description, coverImage, urls },
+  render,
+} = Astro.props;
+const { Content } = await render();
+---
+
+<RootLayout title={name} description={description}>
+  <main class="my-16">
+    <article class="container lg:max-w-screen-md px-4 mx-auto">
+      <header class="my-16">
+        <h1 class="text-4xl font-extrabold leading-tight">{name}</h1>
+        <p class="text-zinc-600 dark:text-zinc-400 mt-2">
+          {description}
+        </p>
+        <Image
+          src={coverImage}
+          alt={name}
+          class="w-full my-4 object-cover aspect-video"
+          format="webp"
+          width={736}
+          height={414}
+        />
+        <div class="flex gap-4 flex-wrap">
+          {
+            !!urls?.appStore && (
+              <a
+                href={urls.appStore}
+                rel="me"
+                target="_blank"
+                class="hover:underline font-medium"
+              >
+                App Store
+              </a>
+            )
+          }
+          {
+            !!urls?.playStore && (
+              <a
+                href={urls.playStore}
+                rel="me"
+                target="_blank"
+                class="hover:underline font-medium"
+              >
+                Play Store
+              </a>
+            )
+          }
+          {
+            !!urls?.web && (
+              <a
+                href={urls.web}
+                rel="me"
+                target="_blank"
+                class="hover:underline font-medium"
+              >
+                Web
+              </a>
+            )
+          }
+        </div>
+      </header>
+      <section class="prose dark:prose-invert md:prose-lg max-w-none my-16">
+        <Content />
+      </section>
+    </article>
+  </main>
+</RootLayout>

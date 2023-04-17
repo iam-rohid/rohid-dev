@@ -1,0 +1,26 @@
+---
+import Image from "astro/components/Image.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  data: CollectionEntry<"projects">;
+};
+
+const { data } = Astro.props;
+---
+
+<article class="relative">
+  <Image
+    format="webp"
+    src={data.data.coverImage}
+    alt={data.data.name}
+    class="w-full object-cover aspect-video rounded-lg"
+    width={352}
+    height={198}
+  />
+  <h3 class="text-xl font-bold mt-4">{data.data.name}</h3>
+  <p class="text-zinc-600 dark:text-zinc-400 mt-1">
+    {data.data.description}
+  </p>
+  <a href={`/projects/${data.slug}`} class="absolute inset-0"></a>
+</article>

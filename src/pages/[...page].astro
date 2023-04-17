@@ -1,0 +1,32 @@
+---
+import RootLayout from "@/layouts/RootLayout.astro";
+import type { InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allPages = await getCollection("pages");
+
+  return allPages.map((post) => {
+    return {
+      params: { page: post.slug },
+      props: post,
+    };
+  });
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const {
+  data: { title, description },
+  render,
+} = Astro.props;
+const { Content } = await render();
+---
+
+<RootLayout title={title} description={description}>
+  <main class="my-16 container lg:max-w-screen-md px-4 mx-auto">
+    <article class="prose dark:prose-invert md:prose-lg prose-zinc">
+      <Content />
+    </article>
+  </main>
+</RootLayout>

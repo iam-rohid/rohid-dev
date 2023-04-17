@@ -1,0 +1,81 @@
+---
+import Image from "astro/components/Image.astro";
+---
+
+<header
+  class="max-lg:pb-10 max-lg:border-b border-zinc-100 dark:border-zinc-800"
+>
+  <div class="container xl:max-w-screen-lg mx-auto px-4 h-14 flex items-center">
+    <a href="/" class="text-2xl font-bold mr-12">Rohid</a>
+    <div class="max-lg:absolute max-lg:top-12 max-lg:left-0 max-lg:right-0">
+      <nav
+        class="flex gap-6 max-lg:container max-lg:mx-auto max-w-screen-md px-4 h-12 items-center"
+      >
+        <a href="/posts">Posts</a>
+        <a href="/projects">Projects</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <div class="flex-1 justify-end items-center">
+      <nav class="flex items-center justify-end gap-6">
+        <a
+          target="_blank"
+          rel="me"
+          href="https://twitter.com/rohiddev"
+          title="Twitter"
+        >
+          <Image
+            src="/icons/twitter.svg"
+            alt="Twitter Icon"
+            class="w-6 h-6 dark:invert object-contain"
+            width={24}
+            height={24}
+          />
+        </a>
+        <a
+          target="_blank"
+          rel="me"
+          href="https://www.youtube.com/@rohiddev"
+          title="YouTube"
+        >
+          <Image
+            src="/icons/youtube.svg"
+            alt="YouTube Icon"
+            class="w-6 h-6 dark:invert object-contain"
+            width={24}
+            height={24}
+          />
+        </a>
+        <a
+          target="_blank"
+          rel="me"
+          href="https://github.com/iam-rohid"
+          title="Github"
+        >
+          <Image
+            src="/icons/github.svg"
+            alt="Github Icon"
+            class="w-6 h-6 dark:invert object-contain"
+            width={24}
+            height={24}
+          />
+        </a>
+        <a
+          target="_blank"
+          rel="me"
+          href="https://instagram.com/rohiddev"
+          title="Instagram"
+        >
+          <Image
+            src="/icons/instagram.svg"
+            alt="Instagram Icon"
+            class="w-6 h-6 dark:invert object-contain"
+            width={24}
+            height={24}
+          />
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>

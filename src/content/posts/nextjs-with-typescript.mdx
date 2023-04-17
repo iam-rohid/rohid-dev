@@ -1,0 +1,78 @@
+---
+title: Next.js with Typescript
+description: In this blog, we are going to see how easily we can implement TypeScript into a nextjs project. Are you excited? It's super simple to do trust me 😉.
+publishDate: 2022-08-25
+isDraft: false
+---
+
+## Introduction 🥸
+
+**TypeScript** is powerful in every way 👀. It brings type definition in **JavaScript** 🤯. **TypeScript** helps us and IDE's finding bugs while we are coding. For that, we can deploy our websites/services without any hidden bugs for the most time. I think it is the default go-to language for modern development. At least that's what I think.
+
+Similarly, **Next.js** is also powerful cause it is behind the scene **React**, which is one of the popular plus powerful JavaScript front-end framework out there. It also brings server-side rendering in **React** 🤯. And for this server-side rendering feature now we react developers can develop SEO-friendly websites with **React** which is awesome.
+
+In this blog, we are going to see how easily we can implement **TypeScript** into a **nextjs** project. Are you excited? It's super simple to do trust me 😉
+
+## Here is how to do it
+
+To use typescript in our next js project we have to create a nextjs project first or if you already have a project then it's pretty easy to upgrade your project to TypeScript.
+
+To use TypeScript you need to install or add(if you are using yarn) typescript dependency plus types for react dependency. After that just by changing the file extensions from `.js` to `.tsx` next js will automatically recognize you are using typescript and it will generate a config file for `tsconfig.json` for your project.
+
+Let's see the process step by step
+
+### Step 1 - Create a next.js project
+
+The easiest way to create a next.js project is to use the `create-next-app` command.
+
+```bash
+npx create-next-app my-project-name
+```
+
+This will create a nextjs project for you. Here is the file structure
+
+### Next Image
+
+![Screenshot 2021-10-04 at 7.58.40 PM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1633357391580/3PvfbUgdS.png)
+
+### Step 2 - Add extra dependencies for typescript
+
+For TypeScript to work you have to install `typescript` as a dev dependency plus types for React and react-dom in your project. To do this just simply run this command
+
+```bash
+// if you are using yarn
+yarn add -D typescript @types/react @types/react-dom
+// if you are using npm
+npm i -D typescript @types/react @types/react-dom
+```
+
+![Screenshot 2021-10-04 at 8.25.45 PM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1633357391580/3PvfbUgdS.png)
+
+### Step 3 - Change extensions from `.js` to `.tsx`
+
+Finally, we can just change all the extensions from `.js` to `.tsx`.
+
+It should look like this
+
+![Screenshot 2021-10-04 at 7.59.03 PM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1633357422916/cn7YzDids.png)
+
+### Step 4 - All done! run your project 🎉
+
+All done. Run your project.
+
+```bash
+// if you are using yarn
+yarn dev
+// if you are using npm
+npm run dev
+```
+
+While running, next js will detect that you are using TypeScript and it will generate a config file for your project in the root directory `tsconfig.json`.
+
+![Screenshot 2021-10-04 at 8.26.38 PM.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1633357616813/iadGNIa3t.png)
+
+## All done 🥳🎉
+
+All done! We are successfully converted our JavaScript base nextjs project to a TypeScript project. Awesome job guys.
+
+I hope this blog helped you with implementing TypeScript into your nextjs project 😊

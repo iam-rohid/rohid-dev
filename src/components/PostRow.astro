@@ -1,0 +1,37 @@
+---
+import Image from "astro/components/Image.astro";
+import { format } from "date-fns";
+type Props = {
+  title: string;
+  description: string;
+  thumbnail: string | undefined;
+  slug: string;
+  date: Date;
+};
+const { title, slug, description, thumbnail, date } = Astro.props;
+---
+
+<article class="py-4 relative flex gap-4">
+  <div class="flex-1">
+    <h3 class="text-xl font-bold line-clamp-2">{title}</h3>
+    <p class="text-zinc-700 dark:text-zinc-300 my-1 line-clamp-2">
+      {description}
+    </p>
+    <p class="text-zinc-600 dark:text-zinc-400 my-1">
+      {format(date, "MMM dd, yyy")}
+    </p>
+  </div>
+  {
+    !!thumbnail && (
+      <Image
+        format="webp"
+        src={thumbnail}
+        alt={title}
+        class="aspect-square md:aspect-video w-24 md:w-40 h-fit object-cover rounded-md"
+        width={160}
+        height={90}
+      />
+    )
+  }
+  <a href={`/posts/${slug}`} class="absolute inset-0"></a>
+</article>
