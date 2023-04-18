@@ -1,7 +1,7 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro";
 import type { InferGetStaticPropsType } from "astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -36,9 +36,7 @@ const { Content } = await render();
           src={coverImage}
           alt={name}
           class="w-full my-4 object-cover aspect-video"
-          format="webp"
-          width={736}
-          height={414}
+          width={800}
         />
         <div class="flex gap-4 flex-wrap">
           {

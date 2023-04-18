@@ -1,14 +1,16 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 import { format } from "date-fns";
 type Props = {
-  title: string;
-  description: string;
-  thumbnail: string | undefined;
-  slug: string;
-  date: Date;
+  data: CollectionEntry<"posts">;
 };
-const { title, slug, description, thumbnail, date } = Astro.props;
+const {
+  data: {
+    data: { title, description, publishDate, coverImage },
+    slug,
+  },
+} = Astro.props;
 ---
 
 <article class="py-4 relative flex gap-4">
@@ -18,20 +20,18 @@ const { title, slug, description, thumbnail, date } = Astro.props;
       {description}
     </p>
     <p class="text-zinc-600 dark:text-zinc-400 my-1">
-      {format(date, "MMM dd, yyy")}
+      {format(publishDate, "MMM dd, yyy")}
     </p>
   </div>
   {
-    !!thumbnail && (
+    !!coverImage && (
       <Image
-        format="webp"
-        src={thumbnail}
+        src={coverImage}
         alt={title}
         class="aspect-square md:aspect-video w-24 md:w-40 h-fit object-cover rounded-md"
-        width={160}
-        height={90}
+        width={320}
       />
     )
   }
-  <a href={`/posts/${slug}`} class="absolute inset-0"></a>
+  <a href={`/posts/${slug}`} class="absolute inset-0 opacity-0">{title}</a>
 </article>

@@ -23,10 +23,11 @@ const featuredProjects = allProjects.filter((project) =>
       </p>
       <h1>I'm Rohid</h1>
       <p>
-        I'm a self-thought developer and founder <a href="https://inspirly.app"
-          >Inspirly</a
-        >. I'm currently building Inspired in public and also doing <a
-          href="https://youtube.com/@rohiddev">YouTube</a
+        I'm a self-thought developer. I'm currently building <a
+          href="https://inspirly.app"
+          target="_blank">Inspirly</a
+        > in public and also doing <a href="https://youtube.com/@rohiddev"
+          >YouTube</a
         > occasionally.
       </p>
     </section>
@@ -53,17 +54,7 @@ const featuredProjects = allProjects.filter((project) =>
         <a href="/posts">See all</a>
       </div>
       <div>
-        {
-          recentPosts.map((post) => (
-            <PostRow
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.publishDate}
-              slug={post.slug}
-              thumbnail={post.data.coverImage}
-            />
-          ))
-        }
+        {recentPosts.map((post) => <PostRow data={post} />)}
       </div>
     </section>
   </main>

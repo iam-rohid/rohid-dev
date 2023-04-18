@@ -21,17 +21,7 @@ const sortedPosts = allPosts.sort((a, b) =>
         </h2>
       </div>
       <div>
-        {
-          sortedPosts.map((post) => (
-            <PostRow
-              title={post.data.title}
-              description={post.data.description}
-              date={post.data.publishDate}
-              slug={post.slug}
-              thumbnail={post.data.coverImage}
-            />
-          ))
-        }
+        {sortedPosts.map((post) => <PostRow data={post} />)}
       </div>
     </section>
   </main>

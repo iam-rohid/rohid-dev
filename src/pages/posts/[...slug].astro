@@ -1,7 +1,7 @@
 ---
 import RootLayout from "@/layouts/RootLayout.astro";
 import type { InferGetStaticPropsType } from "astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 
@@ -39,9 +39,7 @@ const { Content } = await render();
               src={coverImage}
               alt={title}
               class="w-full my-4 object-cover aspect-video"
-              format="webp"
-              width={736}
-              height={414}
+              width={800}
             />
           )
         }
