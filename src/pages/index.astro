@@ -11,7 +11,7 @@ const recentPosts = allPosts
   .slice(0, 5);
 const allProjects = await getCollection("projects");
 const featuredProjects = allProjects.filter((project) =>
-  ["inspirly", "fantasy-ai"].includes(project.slug)
+  ["nexchat", "inspirly"].includes(project.slug)
 );
 ---
 
