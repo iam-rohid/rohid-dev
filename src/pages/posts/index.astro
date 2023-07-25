@@ -4,25 +4,61 @@ import RootLayout from "@/layouts/RootLayout.astro";
 import { compareDesc } from "date-fns";
 import PostRow from "@/components/PostRow.astro";
 
-const allPosts = await getCollection("posts");
-const sortedPosts = allPosts.sort((a, b) =>
-  compareDesc(a.data.publishDate, b.data.publishDate)
+const query = Astro.url.searchParams.get("query");
+
+let allPosts = await getCollection("posts");
+
+if (query) {
+  allPosts = allPosts.filter((post) =>
+    post.data.title.toLowerCase().includes(query.toLowerCase())
+  );
+}
+
+allPosts = allPosts.sort((a, b) =>
+  compareDesc(new Date(a.data.publishDate), new Date(b.data.publishDate))
 );
 ---
 
 <RootLayout title="Posts">
-  <main class="container lg:max-w-screen-md mx-auto px-4 my-16">
-    <section id="all-posts">
-      <div class="mb-4 flex items-center">
-        <h2
-          class="text-2xl font-medium text-zinc-600 dark:text-zinc-400 flex-1"
-        >
-          All Posts
-        </h2>
+  <main
+    class="container lg:max-w-screen-lg mx-auto w-full px-4 md:py-16 md:space-y-16 py-8 space-y-8"
+  >
+    <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
+      {query ? `Search: ${query}` : "Posts"}
+    </h2>
+    <div class="flex items-start gap-8">
+      <div class="flex-1">
+        {allPosts.map((post) => <PostRow data={post} />)}
       </div>
-      <div>
-        {sortedPosts.map((post) => <PostRow data={post} />)}
+      <div class="w-64">
+        <form>
+          <fieldset class="relative">
+            <input
+              type="search"
+              name="query"
+              value={query}
+              placeholder="Search post titles..."
+              class="bg-transparent w-full pr-4 pl-10 h-10 rounded-md border border-zinc-200 dark:border-zinc-800"
+            />
+            <svg
+              width="512"
+              height="512"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 absolute top-1/2 -translate-y-1/2 left-3 pointer-events-none text-zinc-600 dark:text-zinc-400"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314Z"
+              ></path>
+            </svg>
+          </fieldset>
+        </form>
       </div>
-    </section>
+    </div>
   </main>
 </RootLayout>
