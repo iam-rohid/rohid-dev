@@ -20,7 +20,7 @@ const {
       {description}
     </p>
     <p class="text-zinc-600 dark:text-zinc-400 my-1">
-      {format(publishDate, "MMM dd, yyy")}
+      {format(new Date(publishDate), "MMM dd, yyy")}
     </p>
   </div>
   {
@@ -30,6 +30,7 @@ const {
         alt={title}
         class="aspect-square md:aspect-video w-24 md:w-40 h-fit object-cover rounded-md"
         width={320}
+        height={320}
       />
     )
   }

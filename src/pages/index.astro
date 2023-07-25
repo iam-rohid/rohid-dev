@@ -1,11 +1,11 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import RootLayout from "@/layouts/RootLayout.astro";
 import { compareDesc } from "date-fns";
 import PostRow from "@/components/PostRow.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 
-const allPosts: CollectionEntry<"posts">[] = [];
+const allPosts = await getCollection("posts");
 const recentPosts = allPosts
   .sort((a, b) => compareDesc(a.data.publishDate, b.data.publishDate))
   .slice(0, 5);
