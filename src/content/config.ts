@@ -14,7 +14,6 @@ const postsCollection = defineCollection({
 const pagesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
-    description: z.string(),
     isDraft: z.boolean().default(true),
   }),
 });

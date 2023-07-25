@@ -23,6 +23,40 @@ export default config({
     }),
   },
   collections: {
+    pages: collection({
+      label: "Pages",
+      path: "src/content/pages/*/",
+      slugField: "title",
+      format: { contentField: "content" },
+      entryLayout: "content",
+      schema: {
+        title: fields.slug({
+          name: {
+            label: "Title",
+            validation: {
+              length: {
+                max: 100,
+              },
+            },
+          },
+        }),
+        isDraft: fields.checkbox({
+          label: "Draft",
+          defaultValue: true,
+        }),
+        content: fields.document({
+          label: "Content",
+          formatting: true,
+          dividers: true,
+          links: true,
+          tables: true,
+          images: {
+            directory: "public/images/pages",
+            publicPath: "/images/pages/",
+          },
+        }),
+      },
+    }),
     posts: collection({
       label: "Posts",
       path: "src/content/posts/*/",
@@ -69,11 +103,11 @@ export default config({
           formatting: true,
           dividers: true,
           links: true,
+          tables: true,
           images: {
             directory: "public/images/posts",
             publicPath: "/images/posts/",
           },
-          tables: true,
         }),
       },
     }),

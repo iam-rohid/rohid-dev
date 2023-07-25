@@ -14,19 +14,23 @@ const recentPosts = allPosts
 
 <RootLayout>
   <main class="container lg:max-w-screen-md mx-auto px-4 my-16">
-    <section class="my-16 prose dark:prose-invert prose-zinc">
-      <p class="text-2xl font-medium text-zinc-600 dark:text-zinc-400 mb-1">
+    <section class="my-16">
+      <p
+        class="text-2xl md:text-3xl font-medium text-zinc-600 dark:text-zinc-400 mb-1"
+      >
         Hi 👋
       </p>
-      <h1>I'm Rohid</h1>
-      <p>
-        I'm a self-thought developer. I'm currently building <a
-          href="https://inspirly.app"
-          target="_blank">Inspirly</a
-        > in public and also doing <a href="https://youtube.com/@rohiddev"
-          >YouTube</a
-        > occasionally.
-      </p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-8 mt-4">I'm Rohid</h1>
+      <div class="prose dark:prose-invert lg:prose-lg prose-zinc max-w-none">
+        <p>
+          I'm a self-thought developer. I'm currently building <a
+            href="https://inspirly.app"
+            target="_blank">Inspirly</a
+          > in public and also doing <a href="https://youtube.com/@rohiddev"
+            >YouTube</a
+          > occasionally.
+        </p>
+      </div>
     </section>
     <section id="recent-posts" class="my-16">
       {recentPosts.map((post) => <PostRow data={post} />)}
