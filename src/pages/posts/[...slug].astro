@@ -1,4 +1,5 @@
 ---
+import PostSearchBar from "@/components/PostSearchBar.astro";
 import RootLayout from "@/layouts/RootLayout.astro";
 import type { InferGetStaticPropsType } from "astro";
 import { Image } from "astro:assets";
@@ -26,27 +27,41 @@ const { Content } = await render();
 ---
 
 <RootLayout title={title} description={description} keywords={tags}>
-  <main class="my-16">
-    <article class="container lg:max-w-screen-md px-4 mx-auto">
-      <header class="my-16">
-        <p class="text-zinc-600 dark:text-zinc-400 mb-2">
-          {format(publishDate, "MMM dd, yyy")}
+  <main
+    class="container lg:max-w-screen-lg mx-auto w-full px-4 lg:py-16 lg:space-y-16 py-8 space-y-8"
+  >
+    <div class="flex items-start gap-8">
+      <div class="flex-1">
+        <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
+          {title}
+        </h2>
+        <p class="text-zinc-600 dark:text-zinc-300 text-lg mt-4 mb-8">
+          Published
+          <span>
+            {format(new Date(publishDate), "MMMM dd, yyy")}
+          </span>
         </p>
-        <h1 class="text-4xl font-extrabold leading-tight">{title}</h1>
+
         {
           !!coverImage && (
             <Image
               src={coverImage}
               alt={title}
-              class="w-full my-4 object-cover aspect-video"
+              class="w-full object-cover aspect-video my-8"
               width={800}
+              height={600}
             />
           )
         }
-      </header>
-      <section class="prose dark:prose-invert md:prose-lg max-w-none my-16">
-        <Content />
-      </section>
-    </article>
+
+        <div class="prose dark:prose-invert md:prose-lg max-w-none">
+          <Content />
+        </div>
+      </div>
+
+      <div class="w-64 max-lg:hidden">
+        <PostSearchBar />
+      </div>
+    </div>
   </main>
 </RootLayout>

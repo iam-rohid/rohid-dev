@@ -1,0 +1,153 @@
+---
+title: Next.js Setup with TypeScript & Tailwind CSS
+description: Let's create a next.js Project with TypeScript and Tailwindcss from scratch!
+publishDate: "2022-08-30"
+isDraft: false
+---
+
+Hi everyone.
+
+In this blog post, we are going to see how we can create the next js project with TypeScript and Tailwindcss. Also, we are going to enable JIT for Tailwindcss. For those how don't know what JIT is, JIT is a Just in time compiler for Tailwindcss. It compiles only the classes we declared in our project files(HTML or JSX). This allows fast load time. It will be a pretty short blog because there is not much to do to create a next.js project with typescript and Tailwindcss. It's pretty easy to let's go
+
+## Create a project directory
+
+Create a directory with the name of your project. Then open that folder in a terminal or you can open it in visual studio code and use the integrated terminal there.
+
+## Initialize node
+
+Let's initialize node in this directory. In terminal run this command to initialize node
+
+```bash
+yarn init -y
+```
+
+## Add react and next package
+
+Let's add next.js and react packages to this project. Run this command
+
+```bash
+yarn add -D next react react-dom
+```
+
+## Add TypeScript and other type dependences
+
+Let's add typescript in our project. Run This command
+
+```bash
+yarn add -D typescript @types/react @types/react-dom @types/node
+```
+
+## Add Scripts
+
+Open up `package.josn` file and add scripts for next.js.
+
+```json
+// package.json
+{
+   ...
+   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+   ...
+}
+```
+
+## Create index.tsx File
+
+In the root directory create a `pages` folder and inside that create an `index.tsx` file.
+
+```bash
+project-directory
+    ...
+    pages
+        index.tsx
+    ...
+```
+
+After that export a react component from `index.tsx`. This file will be the home page `/` of your website.
+
+```tsx
+// pages/index.tsx
+
+export default function () {
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  );
+}
+```
+
+## Start the development server
+
+Now open up a terminal and run
+
+```bash
+yarn dev
+```
+
+This will start a development server on your local machine at port 3000. In the meantime, nextjs will automatically detect that you are using a typescript and it will generate a `tsconfig.json` file in yours. Now open up your browser and go to `http://localhost:300`. You should see Hello World printed there.
+
+Awesome so far we completed creating a next.js project with typescript. Now time to add Tailwindcss.
+
+## Integrate Tailwindcss
+
+Go to terminal and run this command
+
+```bash
+yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
+```
+
+After that run this
+
+```bash
+npx tailwindcss init -p
+```
+
+This will initialize Tailwindcss and create a `tailwind.config.js` file in our root directory.
+
+Open `tailwind.config.js` file and do the following changes
+
+```js
+// tailwind.config.js
+...
+module.exports = {
+  mode: "jit",
+  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  ...
+```
+
+Inside `pages` directory creates `_app.tsx` file.
+
+```bash
+project-directory
+    ...
+    pages
+        _app.tsx
+        index.tsx
+    ...
+```
+
+Open this file. Add the following
+
+```tsx
+// pages/_app.tsx
+
+import React from "react";
+import type { AppProps } from "next/app";
+import "tailwindcss/tailwind.css";
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  return <Component {...pageProps} />;
+};
+
+export default MyApp;
+```
+
+## Restart The Development Server
+
+Awesome restart the development server and you will see some style changes.
+We successfully created a next.js project with TypeScript and Tailwindcss from scratch.

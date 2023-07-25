@@ -17,15 +17,20 @@ export async function getStaticPaths() {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const {
-  data: { title, description },
+  data: { title },
   render,
 } = Astro.props;
 const { Content } = await render();
 ---
 
-<RootLayout title={title} description={description}>
-  <main class="my-16 container lg:max-w-screen-md px-4 mx-auto">
-    <article class="prose dark:prose-invert md:prose-lg prose-zinc">
+<RootLayout title={title}>
+  <main
+    class="container lg:max-w-screen-md px-4 lg:py-16 lg:space-y-16 py-8 space-y-8 mx-auto"
+  >
+    <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
+      {title}
+    </h2>
+    <article class="prose dark:prose-invert md:prose-lg max-w-none prose-zinc">
       <Content />
     </article>
   </main>

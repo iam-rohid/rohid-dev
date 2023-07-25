@@ -3,26 +3,39 @@ import { getCollection } from "astro:content";
 import RootLayout from "@/layouts/RootLayout.astro";
 import { compareDesc } from "date-fns";
 import PostRow from "@/components/PostRow.astro";
+import PostSearchBar from "@/components/PostSearchBar.astro";
 
-const allPosts = await getCollection("posts");
-const sortedPosts = allPosts.sort((a, b) =>
-  compareDesc(a.data.publishDate, b.data.publishDate)
+const query = Astro.url.searchParams.get("query");
+
+let allPosts = await getCollection("posts");
+
+if (query) {
+  allPosts = allPosts.filter((post) =>
+    post.data.title.toLowerCase().includes(query.toLowerCase())
+  );
+}
+
+allPosts = allPosts.sort((a, b) =>
+  compareDesc(new Date(a.data.publishDate), new Date(b.data.publishDate))
 );
+
+const pageTitle = query ? `Search "${query}"` : "Posts";
 ---
 
-<RootLayout title="Posts">
-  <main class="container lg:max-w-screen-md mx-auto px-4 my-16">
-    <section id="all-posts">
-      <div class="mb-4 flex items-center">
-        <h2
-          class="text-2xl font-medium text-zinc-600 dark:text-zinc-400 flex-1"
-        >
-          All Posts
-        </h2>
+<RootLayout title={pageTitle}>
+  <main
+    class="container lg:max-w-screen-lg mx-auto w-full px-4 lg:py-16 lg:space-y-16 py-8 space-y-8"
+  >
+    <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
+      {pageTitle}
+    </h2>
+    <div class="flex items-start gap-8">
+      <div class="flex-1">
+        {allPosts.map((post) => <PostRow data={post} />)}
       </div>
-      <div>
-        {sortedPosts.map((post) => <PostRow data={post} />)}
+      <div class="w-64 max-lg:hidden">
+        <PostSearchBar />
       </div>
-    </section>
+    </div>
   </main>
 </RootLayout>

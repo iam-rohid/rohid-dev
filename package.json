@@ -3,24 +3,34 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/image": "^0.16.6",
-    "@astrojs/mdx": "^0.19.0",
-    "@astrojs/tailwind": "^3.1.1",
-    "@astrojs/vercel": "^3.2.4",
-    "astro": "^2.3.0",
-    "date-fns": "^2.29.3",
-    "tailwindcss": "^3.0.24"
+    "@astrojs/image": "^0.17.2",
+    "@astrojs/markdoc": "^0.4.3",
+    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/react": "^2.2.1",
+    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/vercel": "^3.7.4",
+    "@keystatic/astro": "^0.0.8",
+    "@keystatic/core": "^0.0.112",
+    "astro": "^2.9.2",
+    "date-fns": "^2.30.0",
+    "mdx@latest": "link:astrojs/mdx@latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react@latest": "link:astrojs/react@latest",
+    "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/react": "^18.2.16",
+    "@types/react-dom": "^18.2.7",
     "sharp": "^0.31.3"
   }
 }
