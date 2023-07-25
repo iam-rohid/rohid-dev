@@ -11,11 +11,11 @@ const { Content } = await data.render();
 ---
 
 <article
-  class="flex gap-4 md:gap-8 lg:gap-16 items-start max-md:flex-col-reverse"
+  class="flex gap-4 md:gap-8 lg:gap-16 items-start max-md:flex-col-reverse py-6 lg:py-12"
 >
   <div class="flex-1 md:sticky top-8">
     <h3 class="text-2xl font-bold">{data.data.title}</h3>
-    <article class="prose dark:prose-invert prose-zinc max-w-none">
+    <article class="prose dark:prose-invert lg:prose-lg prose-zinc max-w-none">
       <Content />
     </article>
   </div>
@@ -23,7 +23,7 @@ const { Content } = await data.render();
     src={data.data.coverImage}
     alt={data.data.title}
     width={512}
-    height={320}
-    class="object-cover aspect-video rounded-lg w-full md:w-72 lg:w-96 md:sticky top-8"
+    height={512}
+    class="object-cover rounded-lg w-full md:w-72 lg:w-96 md:sticky top-8"
   />
 </article>

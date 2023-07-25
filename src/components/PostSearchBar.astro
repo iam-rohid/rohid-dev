@@ -1,0 +1,31 @@
+---
+const query = Astro.url.searchParams.get("query");
+---
+
+<form action="/posts">
+  <fieldset class="relative">
+    <input
+      type="search"
+      name="query"
+      value={query}
+      placeholder="Search post titles..."
+      class="bg-transparent w-full pr-4 pl-10 h-10 rounded-md border border-zinc-200 dark:border-zinc-800"
+    />
+    <svg
+      width="512"
+      height="512"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 absolute top-1/2 -translate-y-1/2 left-3 pointer-events-none text-zinc-600 dark:text-zinc-400"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314Z"
+      ></path>
+    </svg>
+  </fieldset>
+</form>

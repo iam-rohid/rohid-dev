@@ -8,12 +8,14 @@ const allProjects = await getCollection("projects");
 
 <RootLayout title="Projects">
   <main
-    class="container lg:max-w-screen-lg mx-auto w-full px-4 md:py-16 md:space-y-16 py-8 space-y-8"
+    class="container lg:max-w-screen-lg mx-auto w-full px-4 lg:py-16 lg:space-y-16 py-8 space-y-8"
   >
     <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
       Projects
     </h2>
 
-    {allProjects.map((project) => <ProjectCard data={project} />)}
+    <div>
+      {allProjects.map((project) => <ProjectCard data={project} />)}
+    </div>
   </main>
 </RootLayout>
