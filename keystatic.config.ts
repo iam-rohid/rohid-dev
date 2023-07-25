@@ -99,6 +99,7 @@ export default config({
           directory: "public/images/projects",
           publicPath: "/images/projects/",
         }),
+        weight: fields.integer({ label: "Weight", defaultValue: 0 }),
         content: fields.document({
           label: "Content",
           formatting: true,

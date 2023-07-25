@@ -23,6 +23,7 @@ const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     coverImage: z.string(),
+    weight: z.number().optional(),
   }),
 });
 
