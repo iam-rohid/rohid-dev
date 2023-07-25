@@ -3,16 +3,13 @@ import { getCollection } from "astro:content";
 import RootLayout from "@/layouts/RootLayout.astro";
 import { compareDesc } from "date-fns";
 import PostRow from "@/components/PostRow.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
 
 const allPosts = await getCollection("posts");
 const recentPosts = allPosts
-  .sort((a, b) => compareDesc(a.data.publishDate, b.data.publishDate))
+  .sort((a, b) =>
+    compareDesc(new Date(a.data.publishDate), new Date(b.data.publishDate))
+  )
   .slice(0, 5);
-const allProjects = await getCollection("projects");
-const featuredProjects = allProjects.filter((project) =>
-  ["nexchat", "inspirly"].includes(project.slug)
-);
 ---
 
 <RootLayout>
@@ -31,31 +28,8 @@ const featuredProjects = allProjects.filter((project) =>
         > occasionally.
       </p>
     </section>
-    <section id="featured-project" class="my-16">
-      <div class="mb-4 flex items-center">
-        <h2
-          class="text-2xl font-medium text-zinc-600 dark:text-zinc-400 flex-1"
-        >
-          Featured Projects
-        </h2>
-        <a href="/projects">See all</a>
-      </div>
-      <div class="grid md:grid-cols-2 gap-8">
-        {featuredProjects.map((item) => <ProjectCard data={item} />)}
-      </div>
-    </section>
     <section id="recent-posts" class="my-16">
-      <div class="mb-4 flex items-center">
-        <h2
-          class="text-2xl font-medium text-zinc-600 dark:text-zinc-400 flex-1"
-        >
-          Recent Posts
-        </h2>
-        <a href="/posts">See all</a>
-      </div>
-      <div>
-        {recentPosts.map((post) => <PostRow data={post} />)}
-      </div>
+      {recentPosts.map((post) => <PostRow data={post} />)}
     </section>
   </main>
 </RootLayout>

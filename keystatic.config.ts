@@ -77,5 +77,39 @@ export default config({
         }),
       },
     }),
+    projects: collection({
+      label: "Projects",
+      path: "src/content/projects/*/",
+      slugField: "title",
+      format: { contentField: "content" },
+      entryLayout: "content",
+      schema: {
+        title: fields.slug({
+          name: {
+            label: "Title",
+            validation: {
+              length: {
+                max: 100,
+              },
+            },
+          },
+        }),
+        coverImage: fields.image({
+          label: "Cover Iamge",
+          directory: "public/images/projects",
+          publicPath: "/images/projects/",
+        }),
+        content: fields.document({
+          label: "Content",
+          formatting: true,
+          dividers: true,
+          links: true,
+          images: {
+            directory: "public/images/projects",
+            publicPath: "/images/projects/",
+          },
+        }),
+      },
+    }),
   },
 });
