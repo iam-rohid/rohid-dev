@@ -25,18 +25,17 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords.join(",")} />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N165NS4LRX"
-    ></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-N165NS4LRX");
-    </script>
+    <!-- Tinybird Web Analytics -->
+    {
+      process.env.NODE_ENV === "production" && (
+        <script
+          defer
+          src="https://unpkg.com/@tinybirdco/flock.js"
+          data-host="https://api.us-east.tinybird.co"
+          data-token="p.eyJ1IjogImUwMzI1YTE1LTRkMTItNDE4Zi1iMzZlLWM4OGM4ZjMyZWM2NCIsICJpZCI6ICI3NWRlZmI2NS01OTg0LTQyZmItOGQyNC04OTM1MzRkNDM5MTAiLCAiaG9zdCI6ICJ1c19lYXN0In0.7fpoZhGELSBJF-drMYUSsM3KzAp57NheZI5nD2Wq5Hw"
+        />
+      )
+    }
   </head>
   <body class="bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100">
     <Header />
