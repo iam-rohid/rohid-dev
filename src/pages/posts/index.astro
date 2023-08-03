@@ -31,7 +31,9 @@ const pageTitle = query ? `Search "${query}"` : "Posts";
     </h2>
     <div class="flex items-start gap-8">
       <div class="flex-1">
-        {allPosts.map((post) => <PostRow data={post} />)}
+        <div class="space-y-8 py-8">
+          {allPosts.map((post) => <PostRow data={post} />)}
+        </div>
       </div>
       <div class="w-64 max-lg:hidden">
         <PostSearchBar />

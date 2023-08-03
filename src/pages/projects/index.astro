@@ -5,7 +5,6 @@ import { getCollection } from "astro:content";
 
 let projects = await getCollection("projects");
 projects = projects.sort((a, b) => {
-  console.log([a.slug, a.data.weight]);
   if ((a.data.weight || 0) > (b.data.weight || 0)) {
     return -1;
   } else if ((a.data.weight || 0) < (b.data.weight || 0)) {

@@ -10,30 +10,30 @@ const recentPosts = allPosts
     compareDesc(new Date(a.data.publishDate), new Date(b.data.publishDate))
   )
   .slice(0, 5);
+const aboutPage = (await getCollection("pages")).find(
+  (page) => page.slug === "about"
+);
+const { Content } = await aboutPage!.render();
 ---
 
 <RootLayout>
   <main class="container mx-auto my-16 px-4 lg:max-w-screen-md">
     <section class="my-16">
-      <p
-        class="mb-1 text-2xl font-medium text-zinc-600 dark:text-zinc-400 md:text-3xl"
+      <article
+        class="prose prose-zinc max-w-none dark:prose-invert md:prose-lg"
       >
-        Hi 👋
-      </p>
-      <h1 class="mb-8 mt-4 text-4xl font-bold md:text-5xl">I'm Rohid</h1>
-      <div class="prose prose-zinc max-w-none dark:prose-invert lg:prose-lg">
-        <p>
-          I'm a self-thought developer. I'm currently building <a
-            href="https://inspirly.app"
-            target="_blank">Inspirly</a
-          > in public and also doing <a href="https://youtube.com/@rohiddev"
-            >YouTube</a
-          > occasionally.
-        </p>
-      </div>
+        <Content />
+      </article>
     </section>
     <section id="recent-posts" class="my-16">
-      {recentPosts.map((post) => <PostRow data={post} />)}
+      <p
+        class="mb-4 text-2xl font-medium text-zinc-500 underline underline-offset-4 dark:text-zinc-400"
+      >
+        My Recent Posts 👇
+      </p>
+      <div class="space-y-8 py-8">
+        {recentPosts.map((post) => <PostRow data={post} />)}
+      </div>
     </section>
   </main>
 </RootLayout>

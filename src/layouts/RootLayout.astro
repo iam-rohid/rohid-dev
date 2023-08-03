@@ -37,9 +37,13 @@ const {
       )
     }
   </head>
-  <body class="bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100">
+  <body
+    class="flex min-h-screen flex-col bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+  >
     <Header />
-    <slot />
+    <div class="flex-1">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>

@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { format } from "date-fns";
 type Props = {
@@ -7,32 +6,33 @@ type Props = {
 };
 const {
   data: {
-    data: { title, description, publishDate, coverImage },
+    data: { title, description, publishDate },
     slug,
   },
 } = Astro.props;
 ---
 
-<article class="relative flex gap-4 py-4">
-  <div class="flex-1">
-    <h3 class="line-clamp-2 text-xl font-bold">{title}</h3>
-    <p class="my-1 line-clamp-2 text-zinc-700 dark:text-zinc-300">
+<article class="grid max-md:relative max-md:gap-2 md:grid-cols-4">
+  <time
+    datetime={format(new Date(publishDate), "yyyy-dd-mm")}
+    class="my-1 text-zinc-500 dark:text-zinc-400"
+  >
+    {format(new Date(publishDate), "MMM dd, yyyy")}
+  </time>
+  <div class="group md:relative md:col-span-3">
+    <h3 class="line-clamp-2 text-lg font-semibold">
+      <div
+        class="absolute -inset-4 -z-10 scale-95 rounded-lg bg-zinc-200 opacity-0 transition-[opacity,transform] duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800"
+      >
+      </div>
+      <a href={`/posts/${slug}`}>
+        <span class="absolute -inset-4 z-10"></span>
+        {title}
+      </a>
+    </h3>
+
+    <p class="my-1 line-clamp-2 text-zinc-600 dark:text-zinc-300">
       {description}
     </p>
-    <p class="my-1 text-zinc-600 dark:text-zinc-400">
-      {format(new Date(publishDate), "MMMM dd, yyy")}
-    </p>
   </div>
-  {
-    !!coverImage && (
-      <Image
-        src={coverImage}
-        alt={title}
-        class="aspect-square h-fit w-24 rounded-md object-cover md:aspect-video md:w-40"
-        width={320}
-        height={320}
-      />
-    )
-  }
-  <a href={`/posts/${slug}`} class="absolute inset-0 opacity-0">{title}</a>
 </article>

@@ -1,5 +1,4 @@
 ---
-import PostSearchBar from "@/components/PostSearchBar.astro";
 import RootLayout from "@/layouts/RootLayout.astro";
 import type { InferGetStaticPropsType } from "astro";
 import { Image } from "astro:assets";
@@ -28,40 +27,34 @@ const { Content } = await render();
 
 <RootLayout title={title} description={description} keywords={tags}>
   <main
-    class="container mx-auto w-full space-y-8 px-4 py-8 lg:max-w-screen-lg lg:space-y-16 lg:py-16"
+    class="container mx-auto w-full space-y-8 px-4 py-8 md:max-w-screen-md lg:space-y-16 lg:py-16"
   >
-    <div class="flex items-start gap-8">
-      <div class="flex-1">
-        <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
-          {title}
-        </h2>
-        <p class="mb-8 mt-4 text-lg text-zinc-600 dark:text-zinc-300">
-          Published
-          <span>
-            {format(new Date(publishDate), "MMMM dd, yyy")}
-          </span>
-        </p>
+    <article>
+      <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
+        {title}
+      </h2>
+      <p class="mb-8 mt-4 text-lg text-zinc-600 dark:text-zinc-300">
+        Published
+        <span>
+          {format(new Date(publishDate), "MMMM dd, yyy")}
+        </span>
+      </p>
 
-        {
-          !!coverImage && (
-            <Image
-              src={coverImage}
-              alt={title}
-              class="my-8 aspect-video w-full object-cover"
-              width={800}
-              height={600}
-            />
-          )
-        }
+      {
+        !!coverImage && (
+          <Image
+            src={coverImage}
+            alt={title}
+            class="my-8 aspect-video w-full object-cover"
+            width={800}
+            height={600}
+          />
+        )
+      }
 
-        <div class="prose max-w-none dark:prose-invert md:prose-lg">
-          <Content />
-        </div>
+      <div class="prose max-w-none dark:prose-invert md:prose-lg">
+        <Content />
       </div>
-
-      <div class="w-64 max-lg:hidden">
-        <PostSearchBar />
-      </div>
-    </div>
+    </article>
   </main>
 </RootLayout>
