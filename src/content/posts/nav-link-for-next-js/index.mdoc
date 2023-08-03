@@ -1,0 +1,93 @@
+---
+title: NavLink for NextJS
+description: >-
+  A Link component that you can use in both server and client components and add
+  active and inactive classes.
+isDraft: false
+publishDate: '2023-08-03'
+---
+Here is a NavLink for your NextJS app router apps.
+
+You can use this component in both server and client components and add active and inactive classes.
+
+```tsx
+"use client";
+
+import Link, { LinkProps } from "next/link";
+import { usePathname } from "next/navigation";
+import { forwardRef, useEffect, useState } from "react";
+
+export type NavLinkProps = Omit<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  keyof LinkProps
+> &
+  LinkProps & {
+    children?: React.ReactNode;
+  } & React.RefAttributes<HTMLAnchorElement> & {
+    activeClassName?: string;
+    inactiveClassName?: string;
+    end?: boolean;
+  };
+
+const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
+  (
+    { activeClassName, inactiveClassName, className, href, end, ...props },
+    ref,
+  ) => {
+    const [isActive, setIsActive] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+      setIsActive(
+        end
+          ? pathname === href.toString()
+          : pathname.startsWith(href.toString()),
+      );
+    }, [end, href, pathname]);
+
+    return (
+      <Link
+        className={`${className} ${isActive ? activeClassName : inactiveClassName}`}
+        href={href}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+
+NavLink.displayName = "NavLink";
+
+export default NavLink;
+```
+
+To use this in your components just do this
+
+```tsx
+import { NavLink } from "@/components/nav-link"
+
+const Page = () => {
+  return (
+    <nav>
+      <NavLink
+        className="my-link"
+        activeClassName="active"
+        inactiveClassName="inactive"
+        href="/"
+        end // To make sure it only matches with "/" and not with "/*anything"
+        >
+          Home
+      </NavLink>
+        
+      <NavLink
+        className="my-link"
+        activeClassName="active"
+        inactiveClassName="inactive"
+        href="/about"
+        >
+          About
+      </NavLink>
+    </nav>
+  )
+}
+```
