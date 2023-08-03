@@ -28,14 +28,14 @@ const { Content } = await render();
 
 <RootLayout title={title} description={description} keywords={tags}>
   <main
-    class="container lg:max-w-screen-lg mx-auto w-full px-4 lg:py-16 lg:space-y-16 py-8 space-y-8"
+    class="container mx-auto w-full space-y-8 px-4 py-8 lg:max-w-screen-lg lg:space-y-16 lg:py-16"
   >
     <div class="flex items-start gap-8">
       <div class="flex-1">
         <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
           {title}
         </h2>
-        <p class="text-zinc-600 dark:text-zinc-300 text-lg mt-4 mb-8">
+        <p class="mb-8 mt-4 text-lg text-zinc-600 dark:text-zinc-300">
           Published
           <span>
             {format(new Date(publishDate), "MMMM dd, yyy")}
@@ -47,14 +47,14 @@ const { Content } = await render();
             <Image
               src={coverImage}
               alt={title}
-              class="w-full object-cover aspect-video my-8"
+              class="my-8 aspect-video w-full object-cover"
               width={800}
               height={600}
             />
           )
         }
 
-        <div class="prose dark:prose-invert md:prose-lg max-w-none">
+        <div class="prose max-w-none dark:prose-invert md:prose-lg">
           <Content />
         </div>
       </div>

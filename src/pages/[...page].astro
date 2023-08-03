@@ -25,12 +25,12 @@ const { Content } = await render();
 
 <RootLayout title={title}>
   <main
-    class="container lg:max-w-screen-md px-4 lg:py-16 lg:space-y-16 py-8 space-y-8 mx-auto"
+    class="container mx-auto space-y-8 px-4 py-8 lg:max-w-screen-md lg:space-y-16 lg:py-16"
   >
     <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
       {title}
     </h2>
-    <article class="prose dark:prose-invert md:prose-lg max-w-none prose-zinc">
+    <article class="prose prose-zinc max-w-none dark:prose-invert md:prose-lg">
       <Content />
     </article>
   </main>

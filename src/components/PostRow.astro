@@ -13,13 +13,13 @@ const {
 } = Astro.props;
 ---
 
-<article class="py-4 relative flex gap-4">
+<article class="relative flex gap-4 py-4">
   <div class="flex-1">
-    <h3 class="text-xl font-bold line-clamp-2">{title}</h3>
-    <p class="text-zinc-700 dark:text-zinc-300 my-1 line-clamp-2">
+    <h3 class="line-clamp-2 text-xl font-bold">{title}</h3>
+    <p class="my-1 line-clamp-2 text-zinc-700 dark:text-zinc-300">
       {description}
     </p>
-    <p class="text-zinc-600 dark:text-zinc-400 my-1">
+    <p class="my-1 text-zinc-600 dark:text-zinc-400">
       {format(new Date(publishDate), "MMMM dd, yyy")}
     </p>
   </div>
@@ -28,7 +28,7 @@ const {
       <Image
         src={coverImage}
         alt={title}
-        class="aspect-square md:aspect-video w-24 md:w-40 h-fit object-cover rounded-md"
+        class="aspect-square h-fit w-24 rounded-md object-cover md:aspect-video md:w-40"
         width={320}
         height={320}
       />
