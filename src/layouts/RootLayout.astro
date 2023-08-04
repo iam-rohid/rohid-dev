@@ -11,13 +11,13 @@ type Props = {
 
 const {
   title = "Rohid",
-  description = "I'm Rohid",
+  description = "Hey, I'm Rohid. I'm a programmer, designer and solopreneur",
   keywords = [],
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="overflow-y-scroll">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -40,18 +40,19 @@ const {
     }
   </head>
   <body
-    class="flex min-h-screen flex-col bg-white text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+    class="flex min-h-screen flex-col bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
   >
     <Header />
     <div class="flex-1">
       <slot />
     </div>
     <Footer />
-  </body><style is:global>
-    @media (prefers-color-scheme: dark) {
-      html {
-        color-scheme: dark;
+    <style is:global>
+      @media (prefers-color-scheme: dark) {
+        html {
+          color-scheme: dark;
+        }
       }
-    }
-  </style>
+    </style>
+  </body>
 </html>

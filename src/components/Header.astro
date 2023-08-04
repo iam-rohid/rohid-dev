@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 ---
 
 <header
-  class="border-zinc-100 dark:border-zinc-800 max-lg:border-b max-lg:pb-10"
+  class="border-zinc-200 dark:border-zinc-800 max-lg:border-b max-lg:pb-10"
 >
   <div class="container mx-auto flex h-16 items-center px-4 xl:max-w-screen-lg">
     <a href="/" class="mr-12 text-2xl font-bold">Rohid</a>
@@ -11,6 +11,7 @@ import { Image } from "astro:assets";
       <nav
         class="flex h-12 max-w-screen-md items-center gap-6 px-4 max-lg:container max-lg:mx-auto"
       >
+        <a href="/" class="lg:hidden">Home</a>
         <a href="/posts">Posts</a>
         <a href="/projects">Projects</a>
         <a href="/about">About</a>

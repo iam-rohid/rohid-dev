@@ -16,11 +16,9 @@ projects = projects.sort((a, b) => {
 
 <RootLayout title="Projects">
   <main
-    class="container mx-auto w-full space-y-8 px-4 py-8 lg:max-w-screen-lg lg:space-y-16 lg:py-16"
+    class="container mx-auto w-full space-y-8 px-4 py-8 md:max-w-screen-md lg:space-y-16 lg:py-16"
   >
-    <h2 class="text-4xl font-bold text-zinc-600 dark:text-zinc-100">
-      Projects
-    </h2>
+    <h2 class="text-4xl font-bold text-zinc-950 dark:text-zinc-50">Projects</h2>
 
     <div>
       {projects.map((project) => <ProjectCard data={project} />)}
