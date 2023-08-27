@@ -1,6 +1,6 @@
 ---
-import ProjectCard from "@/components/ProjectCard.astro";
 import RootLayout from "@/layouts/RootLayout.astro";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 let projects = await getCollection("projects");
@@ -20,8 +20,26 @@ projects = projects.sort((a, b) => {
   >
     <h2 class="text-4xl font-bold text-zinc-950 dark:text-zinc-50">Projects</h2>
 
-    <div>
-      {projects.map((project) => <ProjectCard data={project} />)}
+    <div class="grid sm:grid-cols-2 gap-x-8 gap-y-16">
+      {
+        projects.map((project) => (
+          <a href={`/projects/${project.slug}`} class="space-y-4">
+            <Image
+              src={project.data.coverImage}
+              alt={project.data.title}
+              width={512}
+              height={512}
+              class="aspect-video rounded-xl object-cover"
+            />
+            <div class="flex flex-col justify-center">
+              <h3 class="text-xl font-bold">{project.data.title}</h3>
+              <p class="line-clamp-2 text-zinc-600 dark:text-zinc-400 mt-2">
+                {project.data.description}
+              </p>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </main>
 </RootLayout>

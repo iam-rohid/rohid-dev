@@ -8,9 +8,6 @@ import markdoc from "@astrojs/markdoc";
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    assets: true,
-  },
   integrations: [
     tailwind(),
     mdx({
@@ -22,7 +19,6 @@ export default defineConfig({
   output: "hybrid",
   adapter: vercel(),
   experimental: {
-    viewTransitions: true,
     assets: true,
   },
 });

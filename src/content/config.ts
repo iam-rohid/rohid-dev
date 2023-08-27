@@ -21,6 +21,7 @@ const pagesCollection = defineCollection({
 const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
+    description: z.string(),
     coverImage: z.string(),
     weight: z.number().optional(),
   }),

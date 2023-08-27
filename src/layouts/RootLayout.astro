@@ -1,7 +1,6 @@
 ---
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
-import { ViewTransitions } from "astro:transitions";
 
 type Props = {
   title?: string | undefined;
@@ -16,7 +15,6 @@ const {
 } = Astro.props;
 ---
 
-<!DOCTYPE html>
 <html lang="en" class="overflow-y-scroll">
   <head>
     <meta charset="utf-8" />
@@ -26,7 +24,6 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords.join(",")} />
-    <ViewTransitions />
     <!-- Tinybird Web Analytics -->
     {
       process.env.NODE_ENV === "production" && (

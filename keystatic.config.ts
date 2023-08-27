@@ -128,6 +128,15 @@ export default config({
             },
           },
         }),
+        description: fields.text({
+          label: "Description",
+          multiline: true,
+          validation: {
+            length: {
+              max: 300,
+            },
+          },
+        }),
         coverImage: fields.image({
           label: "Cover Iamge",
           directory: "public/images/projects",

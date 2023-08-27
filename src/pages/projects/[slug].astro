@@ -1,0 +1,79 @@
+---
+import RootLayout from "@/layouts/RootLayout.astro";
+import type { InferGetStaticPropsType } from "astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection("projects");
+
+  return allProjects.map((project) => {
+    return {
+      params: { slug: project.slug },
+      props: project,
+    };
+  });
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const {
+  data: { title, description, coverImage },
+  render,
+} = Astro.props;
+const { Content } = await render();
+---
+
+<RootLayout title={title} description={description}>
+  <main
+    class="container mx-auto w-full space-y-8 px-4 py-8 md:max-w-screen-md lg:space-y-16 lg:py-16"
+  >
+    <article>
+      <h2 class="text-4xl font-bold text-zinc-950 dark:text-zinc-50">
+        {title}
+      </h2>
+      <p class="text-zinc-600 dark:text-zinc-300 mt-4 text-lg">{description}</p>
+
+      {
+        !!coverImage && (
+          <Image
+            src={coverImage}
+            alt={title}
+            class="my-16 aspect-video w-full object-cover rounded-2xl"
+            width={800}
+            height={600}
+          />
+        )
+      }
+
+      <div
+        class="h-px my-24 w-1/2 bg-zinc-500 dark:bg-zinc-500 mx-auto relative"
+      >
+        <div
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-zinc-950 p-4 text-zinc-500 dark:text-zinc-500"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-6 h-6"
+            ><path
+              d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+            ></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path
+              d="M3 5h4"></path><path d="M17 19h4"></path></svg
+          >
+        </div>
+      </div>
+
+      <div class="prose max-w-none dark:prose-invert md:prose-xl">
+        <Content />
+      </div>
+    </article>
+  </main>
+</RootLayout>
