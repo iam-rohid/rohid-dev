@@ -31,23 +31,28 @@ const canoical = `${BASE_URL}${Astro.url.pathname}`;
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="canonical" href={canoical} />
     <meta name="copyright" content="ISC" />
-    <meta property="og:type" content="website" />
+
     <title>{title}</title>
-    <meta name="apple-mobile-web-app-title" content={title} />
-    <meta property="og:site_name" content={title} />
-    <meta property="og:title" content={title} />
-    <meta name="twitter:title" content={title} />
     <meta name="description" property="og:description" content={description} />
-    <meta name="twitter:description" content={description} />
+
+    <meta property="og:type" content="website" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
     {!!imageAlt && <meta property="og:image:alt" content={imageAlt} />}
     {!!imageUrl && <meta property="og:image" content={imageUrl} />}
-    {!!imageUrl && <meta name="twitter:image:src" content={imageUrl} />}
+
+    <meta property="og:url" content={canoical} />
+
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@rohiddev" />
+
     <meta name="author" content={author} />
     <meta name="keywords" content={keywords.join(",")} />
 
+    <link rel="canonical" href={canoical} />
     <!-- Plausible Script -->
     <script
       defer
