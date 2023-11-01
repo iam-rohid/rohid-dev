@@ -25,7 +25,13 @@ const {
 const { Content } = await render();
 ---
 
-<RootLayout title={title} description={description} keywords={tags}>
+<RootLayout
+  title={title}
+  description={description}
+  keywords={tags}
+  image={coverImage ?? undefined}
+  imageAlt={coverImage ? title : undefined}
+>
   <main
     class="container mx-auto w-full space-y-8 px-4 py-8 md:max-w-screen-md lg:space-y-16 lg:py-16"
   >
@@ -45,9 +51,9 @@ const { Content } = await render();
           <Image
             src={coverImage}
             alt={title}
-            class="my-8 aspect-video w-full object-cover"
-            width={800}
-            height={600}
+            class="mt-8 mb-16 aspect-video w-full object-cover rounded-xl"
+            width={1920}
+            height={1080}
           />
         )
       }

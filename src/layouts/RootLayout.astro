@@ -6,24 +6,46 @@ type Props = {
   title?: string | undefined;
   description?: string;
   keywords?: string[] | undefined;
+  image?: string | undefined;
+  imageAlt?: string | undefined;
+  author?: string | undefined;
 };
 
 const {
   title = "Rohid",
   description = "Hey, I'm Rohid. I'm a programmer, designer and solopreneur",
   keywords = [],
+  author = "Rohid",
+  image,
+  imageAlt,
 } = Astro.props;
+
+const imageUrl = image ? new URL(image, Astro.url).href : undefined;
 ---
 
-<html lang="en" class="overflow-y-scroll">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={Astro.url} />
+    <meta name="copyright" content="ISC" />
+    <meta property="og:type" content="website" />
     <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="apple-mobile-web-app-title" content={title} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:title" content={title} />
+    <meta name="twitter:title" content={title} />
+    <meta name="description" property="og:description" content={description} />
+    <meta name="twitter:description" content={description} />
+    {!!imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+    {!!imageUrl && <meta property="og:image" content={imageUrl} />}
+    {!!imageUrl && <meta name="twitter:image:src" content={imageUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="author" content={author} />
     <meta name="keywords" content={keywords.join(",")} />
+
     <!-- Plausible Script -->
     <script
       defer
@@ -43,12 +65,13 @@ const {
       <slot />
     </div>
     <Footer />
-    <style is:global>
-      @media (prefers-color-scheme: dark) {
-        html {
-          color-scheme: dark;
-        }
-      }
-    </style>
   </body>
 </html>
+
+<style is:global>
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+  }
+</style>
