@@ -1,6 +1,7 @@
 ---
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import { BASE_URL } from "@/lib/constants";
 
 type Props = {
   title?: string | undefined;
@@ -20,7 +21,8 @@ const {
   imageAlt,
 } = Astro.props;
 
-const imageUrl = image ? new URL(image, Astro.url).href : undefined;
+const imageUrl = image ? new URL(image, BASE_URL).href : undefined;
+const canoical = `${BASE_URL}${Astro.url.pathname}`;
 ---
 
 <html lang="en">
@@ -29,7 +31,7 @@ const imageUrl = image ? new URL(image, Astro.url).href : undefined;
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="canonical" href={Astro.url} />
+    <link rel="canonical" href={canoical} />
     <meta name="copyright" content="ISC" />
     <meta property="og:type" content="website" />
     <title>{title}</title>
