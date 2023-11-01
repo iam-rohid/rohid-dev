@@ -1,0 +1,59 @@
+---
+title: Customizing Android Bottom Navigation Bar Colors in React Native
+description: >-
+  Let's learn how to change the bottom navigation bar background color on
+  Android in your React Native app
+isDraft: true
+coverImage: >-
+  /images/posts/customizing-android-bottom-navigation-bar-colors-in-react-native/coverImage.png
+publishDate: '2023-11-01'
+---
+I don't know about you but I hate inconsistent design. You know that in React Native Android apps you will see a black navigation/bottom bar.
+
+![](/images/posts/customizing-android-bottom-navigation-bar-colors-in-react-native/Screenshot%202023-11-01%20at%203.16.41%E2%80%AFPM.png)
+
+No matter if you're using dark mode or light mode it will stay black and you can't really change it easily. This makes your app ugly and doesn't align with other native apps on your Android device. This is just an Android issue and doesn't happen on iOS. So, in this article let's learn how we can solve this problem.
+
+Thanks to an npm library `react-native-navigation-bar-color` we can fix this problem very easily. If you are using Expo or bare React Native it will work. Keep in mind you have to prebuild if you're using Expo.
+
+### **Step 1**
+
+Install the package
+
+```bash
+npm i react-native-navigation-bar-color
+```
+
+### **Step 2**
+
+In the root/App component file or wherever you are managing your theme, import the package at the top
+
+```tsx
+import changeNavigationBarColor from "react-native-navigation-bar-color";
+```
+
+### **Step 3**
+
+By using useEffect will will set the navigation bar color. Also, note if you support dark theme switching in your app please add the theme object as a dependency in useEffect to reset the color whenever the theme gets updated.
+
+```tsx
+// ...
+useEffect(() => {
+    if (Platform.OS !== "android") return;
+
+    const change = async () => {
+      try {
+        await changeNavigationBarColor(theme.isDark ? "#000000" : "#FFFFFF");
+      } catch (err) {}
+    };
+
+    change();
+}, [theme.isDark])
+// ...
+```
+
+And, that's it! you should see the navigation bar color change on your Android emulator/device.&nbsp;
+
+![](/images/posts/customizing-android-bottom-navigation-bar-colors-in-react-native/Screenshot%202023-11-01%20at%203.16.52%E2%80%AFPM.png)
+
+I hope this small article helped you fix your problem. Thanks for reading ❤️
