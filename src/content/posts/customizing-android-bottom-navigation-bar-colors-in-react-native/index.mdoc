@@ -14,7 +14,7 @@ I don't know about you but I hate inconsistent design. You know that in React Na
 
 No matter if you're using dark mode or light mode it will stay black and you can't really change it easily. This makes your app ugly and doesn't align with other native apps on your Android device. This is just an Android issue and doesn't happen on iOS. So, in this article let's learn how we can solve this problem.
 
-Thanks to an npm library `react-native-navigation-bar-color` we can fix this problem very easily. If you are using Expo or bare React Native it will work. Keep in mind you have to prebuild if you're using Expo.
+Thanks to an npm library `react-native-navigation-bar-color` we can fix this problem very easily. If you are using Expo or bare React Native it will work. Keep in mind you have to [prebuild](https://docs.expo.dev/workflow/prebuild/) if you're using Expo.
 
 ### **Step 1**
 
@@ -34,7 +34,7 @@ import changeNavigationBarColor from "react-native-navigation-bar-color";
 
 ### **Step 3**
 
-By using useEffect will will set the navigation bar color. Also, note if you support dark theme switching in your app please add the theme object as a dependency in useEffect to reset the color whenever the theme gets updated.
+By using useEffect we will set the navigation bar color. Also, note if you support dark theme switching in your app please add the theme object as a dependency in useEffect to reset the color whenever the theme gets updated.
 
 ```tsx
 // ...
